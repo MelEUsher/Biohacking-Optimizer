@@ -7,6 +7,23 @@
 
 ---
 
+## 📚 Table of Contents
+
+- [Overview](#overview)
+- [Project Goals](#project-goals)
+- [Skills and Technologies Used](#skills-and-technologies-used)
+- [Code Quality and Style](#code-quality-and-style)
+- [Project Structure](#project-structure)
+- [Test-Driven Development Workflow](#test-driven-development-workflow)
+- [Dataset(s)](#datasets)
+- [How to Run the Project](#how-to-run-the-project)
+- [Project Status](#project-status)
+- [Roadmap](#roadmap)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+
+---
+
 ## Overview
 
 This project builds a machine learning model that predicts personalized biohacking recommendations based on individual lifestyle data inputs (sleep patterns, workout intensity, supplement intake, screen time, etc.).  
