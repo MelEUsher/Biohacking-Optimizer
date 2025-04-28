@@ -90,14 +90,14 @@ black .
 
 Check all Python files for code quality issues:
 
-```ruff check .
-
+```bash
+ruff check .
 ```
 
 Automatically fix certain linting issues:
 
-```ruff check . --fix
-
+```bash
+ruff check . --fix
 ```
 
 ## All code should pass both Black formatting and Ruff linting before being committed.
