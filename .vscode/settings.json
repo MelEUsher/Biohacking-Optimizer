@@ -1,10 +1,20 @@
 {
+    "workbench.colorTheme": "Solarized Dark",
+    "files.autoSave": "afterDelay",
+    "git.autofetch": true,
     "python.testing.pytestEnabled": true,
-    "python.testing.unittestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
-    "python.testing.autoTestDiscoverOnSaveEnabled": true,
-    "python.testing.cwd": "${workspaceFolder}",
-    "python.testing.pytestArgs": [
-        "."
-    ]
-}
+    "python.testing.autoTestDiscoverOnSaveEnabled": false,
+    "editor.formatOnSave": true,
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "css.validate": false,
+    "github.copilot.enable": {
+      "*": false,
+      "plaintext": false,
+      "markdown": false,
+      "scminput": false
+    },
+    "githubPullRequests.pullBranch": "never",
+    "python.formatting.provider": "black"
+  }
