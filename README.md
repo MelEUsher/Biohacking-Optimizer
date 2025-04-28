@@ -103,5 +103,12 @@ This project is open-source and available under the [MIT License](LICENSE).
 ---
 
 # ✨ Project Status
-> 🚀 Initial project setup complete. Moving into TDD development phase!
+> 🚀 Initial project setup complete. 
+> ✅ Virtual environment configured.  
+> ✅ GitHub repository connected with clean, granular commits.  
+> ✅ Project structure established with scripts/ and tests/ packages.  
+> ✅ Pytest testing framework configured and auto-detected in VS Code.  
+> ✅ First real TDD test and function (drop_missing_rows) implemented and passing.  
+> 
+> 🎯 Currently moving into Phase 2: expanding core data cleaning utilities and unit tests.
 
