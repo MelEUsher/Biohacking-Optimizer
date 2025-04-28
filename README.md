@@ -1,8 +1,5 @@
 # 🧬 Biohacking Personal Optimization Predictor
 
-
-# 🧬 Biohacking Personal Optimization Predictor
-
 [![Project Status: Active](https://img.shields.io/badge/Project%20Status-Active-brightgreen)](https://shields.io/)
 [![Build Status: Passing](https://img.shields.io/badge/Build-Passing-brightgreen)](https://shields.io/)
 [![Code Style: Black](https://img.shields.io/badge/Code%20Style-Black-000000.svg)](https://black.readthedocs.io/en/stable/)
