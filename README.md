@@ -31,7 +31,7 @@
     - [5. Running the Streamlit App (Potential for Later)](#5-running-the-streamlit-app-potential-for-later)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
-- [✨ Project Status](#-project-status)
+  - [✨ Project Status](#-project-status)
   - [🛤️ Roadmap](#️-roadmap)
     - [Core Development](#core-development)
     - [Machine Learning](#machine-learning)
@@ -190,7 +190,7 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-# ✨ Project Status
+## ✨ Project Status
 
 > 🚀 Initial project setup complete.  
 > ✅ Virtual environment configured and activated.  
@@ -204,12 +204,12 @@ This project is open-source and available under the [MIT License](LICENSE).
 > - `drop_missing_rows(df)`
 > - `drop_columns_with_many_nans(df, threshold=0.5)`
 > - `drop_duplicate_rows(df)`
+> - `fill_missing_with_mean(df, columns)`
 > 
-> 🎯 Currently moving into Phase 2C:
-> - Expanding additional data cleaning functions (filling missing values, outlier removal, standardization)
-> - Enhancing unit test coverage
+> 🎯 Currently preparing for Phase 2D:
+> - Expanding feature coverage (e.g., median imputation, scaling, outlier handling)
+> - Continuing TDD-style function development
 > - Beginning dataset preparation and exploratory data analysis (EDA)
->
 
 ---
 
@@ -221,13 +221,15 @@ The following milestones are planned to expand the Biohacking Personal Optimizat
 - [x] Set up virtual environment, GitHub repo, and project structure
 - [x] Configure Pytest for Test-Driven Development (TDD)
 - [x] Configure Black for code formatting and Ruff for linting
-- [x] Build additional data cleaning utilities:
-    - [x] 'drop_missing_rows'
-    - [x] 'drop_columns_with_many_nans'
-    - [x] 'drop duplicate rows'
-- [] Expand data cleaning functions (e.g., fill missing values, handle outliers, standardize numeric features)
+- [x] Build initial data cleaning utilities:
+    - `drop_missing_rows`
+    - `drop_columns_with_many_nans`
+    - `drop_duplicate_rows`
+    - `fill_missing_with_mean`
+- [ ] Expand data cleaning functions (e.g., fill with median, handle outliers, standardize features)
 - [ ] Expand unit tests for new utilities and data processing functions
 - [ ] Start exploratory data analysis (EDA) on sample or personal dataset
+
 
 ### Machine Learning
 - [ ] Build initial predictive model (e.g., recommend supplements or habits based on input features)
