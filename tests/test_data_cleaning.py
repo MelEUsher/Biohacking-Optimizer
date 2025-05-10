@@ -1,5 +1,10 @@
 import pandas as pd
-from scripts.data_cleaning import drop_missing_rows, drop_columns_with_many_nans, drop_duplicate_rows
+from scripts.data_cleaning import (
+    drop_missing_rows,
+    drop_columns_with_many_nans,
+    drop_duplicate_rows,
+    fill_missing_with_mean,
+)
 
 
 def test_drop_missing_rows_removes_nulls():
@@ -31,10 +36,7 @@ def test_drop_columns_with_many_nans():
 
 
 def test_drop_duplicate_rows():
-    data = {
-        'sleep_hours': [7, 6, 8, 5, 9],
-        'workout_intensity': [3, 2, 4, 1, 5]
-    }
+    data = {"sleep_hours": [7, 6, 8, 5, 9], "workout_intensity": [3, 2, 4, 1, 5]}
     df = pd.DataFrame(data)
 
     # Intentionally create a duplicate row
@@ -46,3 +48,23 @@ def test_drop_duplicate_rows():
     assert len(cleaned_df) == len(df) - 1
     assert cleaned_df.duplicated().sum() == 0
 
+
+def test_fill_missing_with_mean():
+    data = {"sleep_hours": [7, 6, None, 8, 7], "workout_intensity": [3, None, 5, 2, 3]}
+    df = pd.DataFrame(data)
+
+    # Run the cleaning function (to be implemented)
+    cleaned_df = fill_missing_with_mean(
+        df, columns=["sleep_hours", "workout_intensity"]
+    )
+
+    # Verify no NaNs remain in specified columns
+    assert cleaned_df["sleep_hours"].isnull().sum() == 0
+    assert cleaned_df["workout_intensity"].isnull().sum() == 0
+
+    # Verify specific values were filled using the mean
+    expected_sleep_mean = df["sleep_hours"].mean()
+    expected_workout_mean = df["workout_intensity"].mean()
+
+    assert cleaned_df.loc[2, "sleep_hours"] == expected_sleep_mean
+    assert cleaned_df.loc[1, "workout_intensity"] == expected_workout_mean

@@ -23,3 +23,15 @@ def drop_duplicate_rows(df: pd.DataFrame) -> pd.DataFrame:
     Drops duplicate rows from the DataFrame.
     """
     return df.drop_duplicates()
+
+
+def fill_missing_with_mean(df: pd.DataFrame, columns: list) -> pd.DataFrame:
+    """
+    Fills missing values in specified numeric columns with their respective column means.
+    """
+    df_filled = df.copy()
+    for col in columns:
+        if col in df_filled.columns:
+            mean_value = df_filled[col].mean()
+            df_filled[col] = df_filled[col].fillna(mean_value)
+    return df_filled
