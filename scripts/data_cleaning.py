@@ -27,7 +27,8 @@ def drop_duplicate_rows(df: pd.DataFrame) -> pd.DataFrame:
 
 def fill_missing_with_mean(df: pd.DataFrame, columns: list) -> pd.DataFrame:
     """
-    Fills missing values in specified numeric columns with their respective column means.
+    Fills missing values in specified numeric columns
+    with their respective column means.
     """
     df_filled = df.copy()
     for col in columns:
