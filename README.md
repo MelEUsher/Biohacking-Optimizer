@@ -175,6 +175,20 @@ pytest
 streamlit run dashboard/app.py
 ```
 
+## 💼 Work Session Guidelines
+
+**Start a session** – run these commands from the repo root in sequence:
+- `git pull` (when collaborating) to sync the latest changes.
+- `python3 -m venv .venv && source .venv/bin/activate` to create/enter the virtual environment.
+- `pip install -r requirements.txt` to install or refresh dependencies.
+- `pytest` (or a focused test such as `pytest tests/test_data_generation.py`) to confirm the test suite is green before coding.
+
+**Wrap up a session** – before you stop working:
+- Stop any running services (press `Ctrl+C` on Streamlit/dev servers).
+- Run `git status` to understand outstanding edits and decide whether to stage or stash them.
+- `deactivate` to leave the virtual environment.
+- (Optional) `git diff`/`git diff --staged` plus `git commit` once you are ready to capture your progress.
+
 ---
 
 ## License
@@ -247,4 +261,3 @@ The following milestones are planned to expand the Biohacking Personal Optimizat
 - [ ] Update README and documentation as the project evolves
 
 ---
-
