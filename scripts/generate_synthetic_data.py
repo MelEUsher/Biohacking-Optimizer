@@ -3,7 +3,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-
 BASE_COLUMNS = [
     "sleep_hours",
     "workout_intensity",
@@ -13,7 +12,9 @@ BASE_COLUMNS = [
 ]
 
 
-def generate_synthetic_data(num_samples: int = 600, random_seed: int = 42) -> pd.DataFrame:
+def generate_synthetic_data(
+    num_samples: int = 600, random_seed: int = 42
+) -> pd.DataFrame:
     """Generate a realistic biohacking dataset with correlated lifestyle features."""
 
     rng = np.random.default_rng(random_seed)
@@ -35,10 +36,7 @@ def generate_synthetic_data(num_samples: int = 600, random_seed: int = 42) -> pd
 
     stress_base = rng.normal(loc=5.0, scale=1.2, size=num_samples)
     stress_level = (
-        stress_base
-        - 0.25 * sleep_hours
-        - 0.18 * workout_intensity
-        + 0.08 * screen_time
+        stress_base - 0.25 * sleep_hours - 0.18 * workout_intensity + 0.08 * screen_time
     )
     stress_level = np.clip(stress_level, 0, 10)
 

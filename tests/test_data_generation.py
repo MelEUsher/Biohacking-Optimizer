@@ -1,11 +1,8 @@
-import os
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 
 from scripts.generate_synthetic_data import generate_synthetic_data, save_synthetic_data
-
 
 REQUIRED_COLUMNS = [
     "sleep_hours",
