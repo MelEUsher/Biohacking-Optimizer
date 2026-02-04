@@ -1,11 +1,26 @@
-
 # Byte-compiled / cache files
 __pycache__/
 *.py[cod]
 
-# Data
+# Data files
 *.csv
+!data/raw/synthetic_biohacking_data.csv
 *.xlsx
+*.parquet
+*.zip
+*.tar.gz
+*.h5
+*.npz
+*.feather
+
+# Data directories
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/synthetic_biohacking_data.csv
+data/interim/*
+!data/interim/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
 
 # Models
 *.pkl
