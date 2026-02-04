@@ -8,15 +8,13 @@
 ---
 
 <!-- TOC -->
-<!-- TOC -->
 ## 📚 Table of Contents
 
 - [🧬 Biohacking Personal Optimization Predictor](#-biohacking-personal-optimization-predictor)
   - [📚 Table of Contents](#-table-of-contents)
   - [Overview](#overview)
-  - [Project Goals](#project-goals)
   - [Getting Started](#getting-started)
-  - [Daily Workflow](#daily-workflow)
+  - [Project Goals](#project-goals)
   - [Skills and Technologies Used](#skills-and-technologies-used)
   - [Code Quality and Style](#code-quality-and-style)
     - [How to Format Code](#how-to-format-code)
@@ -31,6 +29,8 @@
     - [3. Install Required Packages](#3-install-required-packages)
     - [4. Running Tests](#4-running-tests)
     - [5. Running the Streamlit App (Potential for Later)](#5-running-the-streamlit-app-potential-for-later)
+  - [Daily Workflow](#daily-workflow)
+  - [💼 Work Session Guidelines](#-work-session-guidelines)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
   - [✨ Project Status](#-project-status)
@@ -166,8 +166,8 @@ biohacking-optimizer/
 
 ## Dataset(s)
 
-- [ ] Public health/lifestyle datasets (Kaggle, UCI ML Repo, PhysioNet)
-- [ ] Potential: Personal health tracking data (exported from devices or medical logs).
+- [x] Synthetic biohacking dataset (500+ rows with realistic distributions)
+- [ ] Future: Personal health tracking data (Apple Health, Oura Ring)
 
 ---
 
@@ -261,24 +261,20 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ## ✨ Project Status
 
-> 🚀 Initial project setup complete.  
-> ✅ Virtual environment configured and activated.  
-> ✅ GitHub repository created, connected, and pushed with clean, organized commits.  
-> ✅ Project structure established with clear separation between scripts and tests.  
-> ✅ Pytest configured for Test-Driven Development (TDD) workflow.  
-> ✅ Black configured for automatic code formatting (PEP8 compliance).  
-> ✅ Ruff configured for fast code linting and quality checking.  
-> ✅ VS Code fully integrated with Black (format on save) and Pytest (test discovery and running).
-> ✅ Core data cleaning utilities development:
-> - `drop_missing_rows(df)`
-> - `drop_columns_with_many_nans(df, threshold=0.5)`
-> - `drop_duplicate_rows(df)`
-> - `fill_missing_with_mean(df, columns)`
+> **Phase 1: Foundation & Data - COMPLETE ✅**
 > 
-> 🎯 Currently preparing for Phase 2D:
-> - Expanding feature coverage (e.g., median imputation, scaling, outlier handling)
-> - Continuing TDD-style function development
-> - Beginning dataset preparation and exploratory data analysis (EDA)
+> ✅ Synthetic biohacking dataset generated (500+ rows)  
+> ✅ Data versioning structure (raw/interim/processed directories)  
+> ✅ Exploratory Data Analysis completed with reusable utilities  
+> ✅ Data schema documented (feature descriptions, types, ranges)  
+> ✅ README updated with setup and workflow instructions  
+> ✅ All Phase 1 tests passing (25/25)
+> 
+> 🎯 **Next: Phase 2 - ML Pipeline**
+> - Feature engineering & preprocessing
+> - Model experimentation (multiple algorithms)
+> - Model evaluation & selection
+> - Model serialization for deployment
 
 ---
 
@@ -290,29 +286,39 @@ The following milestones are planned to expand the Biohacking Personal Optimizat
 - [x] Set up virtual environment, GitHub repo, and project structure
 - [x] Configure Pytest for Test-Driven Development (TDD)
 - [x] Configure Black for code formatting and Ruff for linting
-- [x] Build initial data cleaning utilities:
-    - `drop_missing_rows`
-    - `drop_columns_with_many_nans`
-    - `drop_duplicate_rows`
-    - `fill_missing_with_mean`
-- [ ] Expand data cleaning functions (e.g., fill with median, handle outliers, standardize features)
-- [ ] Expand unit tests for new utilities and data processing functions
-- [ ] Start exploratory data analysis (EDA) on sample or personal dataset
-
+- [x] Generate synthetic biohacking dataset
+- [x] Set up data versioning/storage structure
+- [x] Build data cleaning utilities with 100% test coverage
+- [x] Perform Exploratory Data Analysis (EDA)
+- [x] Document data schema and feature descriptions
+- [x] Update README with setup and session management
+- [ ] Feature engineering & preprocessing pipeline
+- [ ] Model experimentation (multiple algorithms)
+- [ ] Model evaluation & selection
+- [ ] Model serialization for deployment
 
 ### Machine Learning
-- [ ] Build initial predictive model (e.g., recommend supplements or habits based on input features)
-- [ ] Train and evaluate model performance
-- [ ] Tune hyperparameters and feature engineering
+- [ ] Build preprocessing pipeline (scaling, encoding, feature creation)
+- [ ] Train multiple algorithms (Linear Regression, Random Forest, Gradient Boosting)
+- [ ] Perform cross-validation and hyperparameter tuning
+- [ ] Evaluate model performance (MSE, MAE, R²)
+- [ ] Select best model based on metrics and business requirements
+- [ ] Serialize trained model and preprocessing pipeline
 
 ### Dashboard Development 
-- [ ] Develop basic Streamlit dashboard for user input and predictions
-- [ ] Add visualizations for lifestyle data trends
-- [ ] Deploy the app locally or publicly 
+- [ ] Set up FastAPI backend with prediction endpoint
+- [ ] Implement input validation using Pydantic
+- [ ] Develop Streamlit dashboard for user input
+- [ ] Add visualizations for predictions and insights
+- [ ] Connect frontend to FastAPI backend
+- [ ] Deploy API and dashboard to cloud
 
 ### Code Quality and Maintenance
-- [ ] Maintain 100% passing unit tests
-- [ ] Maintain formatting and linting standards across all code
-- [ ] Update README and documentation as the project evolves
+- [x] Maintain 100% passing unit tests
+- [x] Maintain formatting and linting standards across all code
+- [x] Update README and documentation as project evolves
+- [ ] Set up GitHub Actions for CI/CD
+- [ ] Add automated testing and code quality checks
+- [ ] Deploy to production with monitoring
 
 ---
