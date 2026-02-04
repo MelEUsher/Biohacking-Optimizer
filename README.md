@@ -15,6 +15,8 @@
   - [📚 Table of Contents](#-table-of-contents)
   - [Overview](#overview)
   - [Project Goals](#project-goals)
+  - [Getting Started](#getting-started)
+  - [Daily Workflow](#daily-workflow)
   - [Skills and Technologies Used](#skills-and-technologies-used)
   - [Code Quality and Style](#code-quality-and-style)
     - [How to Format Code](#how-to-format-code)
@@ -44,6 +46,34 @@
 
 This project builds a machine learning model that predicts personalized biohacking recommendations based on individual lifestyle data inputs (sleep patterns, workout intensity, supplement intake, screen time, etc.).  
 It follows a **Test-Driven Development (TDD)** approach: writing tests first, then building the functionality to pass those tests.
+
+---
+
+## Getting Started
+
+Follow these steps to prepare a local development environment that mirrors the project's continuous workflow:
+
+1. Clone the repository and enter the project root:
+   ```bash
+   git clone https://github.com/YOUR-USERNAME/biohacking-optimizer.git
+   cd biohacking-optimizer
+   ```
+2. Create an isolated virtual environment:
+   ```bash
+   python3 -m venv .venv
+   ```
+3. Activate the virtual environment:
+   ```bash
+   source .venv/bin/activate
+   ```
+4. Install development dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+5. Verify installation by running the primary test suite:
+   ```bash
+   python -m pytest
+   ```
 
 ---
 
@@ -174,6 +204,31 @@ pytest
 ```bash
 streamlit run dashboard/app.py
 ```
+
+## Daily Workflow
+
+Maintain focus on Fast Feedback and consistent quality by following this daily rhythm:
+
+- Activate the shared virtual environment (start a session):
+  ```bash
+  source .venv/bin/activate
+  ```
+- Deactivate the environment when you stop working (end a session):
+  ```bash
+  deactivate
+  ```
+- Run the core test suite:
+  ```bash
+  python -m pytest
+  ```
+- Format code before committing:
+  ```bash
+  black .
+  ```
+- Lint with Ruff before pushing:
+  ```bash
+  ruff check .
+  ```
 
 ## 💼 Work Session Guidelines
 
