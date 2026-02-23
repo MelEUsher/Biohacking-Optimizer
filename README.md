@@ -168,25 +168,25 @@ Follow these steps to prepare a local development environment that mirrors the p
 
 ## Project Goals
 
-- Predict supplement regimens and habit optimizations based on user data.
-- Visualize the relationships between health behaviors and biohacking goals.
-- Build the project using a **Test-Driven Development** workflow to ensure reliability, maintainability, and professional-grade code quality.
-- Deploy an interactive Streamlit dashboard for user inputs and predictions.
+- Build and deploy a production-grade ML system using a two-service FastAPI architecture.
+- Persist user data and predictions in a relational PostgreSQL database.
+- Deliver personalized biohacking recommendations via a versioned, isolated model inference service.
+- Demonstrate end-to-end software engineering practices: TDD, CI/CD, authentication, and cloud deployment.
 
 ---
 
 ## Skills and Technologies Used
 
-- **Programming Languages:** Python
-- **Data Analysis:** Pandas, NumPy
-- **Machine Learning:** Scikit-Learn
-- **Testing Framework:** PyTest
-- **Formatting Tool:** Black (auto-formatting Python code to PEP8 standards)
-- **Linting Tool:** Ruff (fast Python linter and code quality checker)
-- **Data Visualization:** Matplotlib, Seaborn
-- **(Front-End):** Streamlit
+- **Backend:** Python, FastAPI (Application API + Model Service)
+- **Database:** PostgreSQL
+- **Machine Learning:** Scikit-Learn, Pandas, NumPy
+- **Authentication:** JWT / OAuth2
+- **Testing:** PyTest (TDD, 100% coverage)
+- **Code Quality:** Black, Ruff
+- **CI/CD:** GitHub Actions
+- **Containerization:** Docker
+- **Frontend:** Streamlit
 - **Version Control:** Git, GitHub
-- **Containerization:** Docker (for deployment)
 
 ---
 
@@ -226,16 +226,19 @@ ruff check . --fix
 ```
 biohacking-optimizer/
 │
-├── data/                  # Datasets (raw and processed)
+├── api/                   # Application API (FastAPI) - auth, CRUD, orchestration
+├── model_service/         # Model Service (FastAPI) - isolated inference
+├── data/                  # Datasets (raw, interim, processed)
 ├── notebooks/             # Jupyter notebooks for EDA, modeling
-├── scripts/               # Core functionality (cleaning, modeling)
-├── tests/                 # Unit tests (TDD workflow)
-├── models/                # Saved models (pickle files)
-├── dashboard/             # Streamlit app (optional)
-├── .gitignore             # Ignore venv/ and other unnecessary files
-├── README.md              # Project overview
-├── requirements.txt       # Python libraries needed
-└── venv/                  # Local virtual environment (not pushed to GitHub)
+├── scripts/               # Core utilities (preprocessing, modeling)
+├── models/                # Serialized model artifacts (versioned)
+├── dashboard/             # Streamlit frontend
+├── tests/                 # Unit and integration tests (TDD)
+├── .github/workflows/     # CI/CD pipelines
+├── .gitignore
+├── README.md
+├── requirements.txt
+└── .venv/
 ```
 
 ---
@@ -387,21 +390,25 @@ The following milestones are planned to expand the Biohacking Personal Optimizat
 - [ ] Model evaluation & selection
 - [ ] Model serialization for deployment
 
-### Machine Learning
-- [ ] Build preprocessing pipeline (scaling, encoding, feature creation)
-- [ ] Train multiple algorithms (Linear Regression, Random Forest, Gradient Boosting)
-- [ ] Perform cross-validation and hyperparameter tuning
-- [ ] Evaluate model performance (MSE, MAE, R²)
-- [ ] Select best model based on metrics and business requirements
-- [ ] Serialize trained model and preprocessing pipeline
+### Backend & API
+- [ ] Feature engineering & preprocessing pipeline
+- [ ] Model experimentation and evaluation (MSE, MAE, R²)
+- [ ] Model serialization and versioning
+- [ ] Application API (FastAPI) — auth, CRUD, PostgreSQL integration
+- [ ] Model Service (FastAPI) — isolated inference endpoint
+- [ ] Input validation using Pydantic
 
-### Dashboard Development 
-- [ ] Set up FastAPI backend with prediction endpoint
-- [ ] Implement input validation using Pydantic
-- [ ] Develop Streamlit dashboard for user input
-- [ ] Add visualizations for predictions and insights
-- [ ] Connect frontend to FastAPI backend
-- [ ] Deploy API and dashboard to cloud
+### Infrastructure & Deployment
+- [ ] Set up GitHub Actions for CI/CD
+- [ ] Automated testing and code quality checks in CI
+- [ ] Containerize services with Docker
+- [ ] Deploy Application API and Model Service to cloud
+- [ ] Deploy Streamlit frontend
+
+### Frontend
+- [ ] Streamlit dashboard for user input and predictions
+- [ ] Visualizations for trends and insights
+- [ ] Connect frontend to Application API
 
 ### Code Quality and Maintenance
 - [x] Maintain 100% passing unit tests
