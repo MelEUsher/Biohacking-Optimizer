@@ -433,3 +433,72 @@ This project follows a structured 9-phase development plan. Each phase uses Test
 | 7 | Real Data Integration | ⏳ Planned |
 | 8 | Final Sweep | ⏳ Planned |
 | 9 | HIPAA Compliance | ⏳ Planned |
+
+---
+
+## Model Development
+
+Phase 2 model development followed a Test-Driven Development (TDD) workflow: tests were written first for feature engineering, experimentation, evaluation, and serialization before implementation was added.
+
+The ML experimentation pipeline trained and compared 3 regression algorithms on the synthetic biohacking dataset:
+
+- Linear Regression
+- Random Forest
+- Gradient Boosting
+
+Model comparison used 5-fold cross-validation in addition to holdout evaluation metrics (MSE, MAE, RMSE, and R²).
+
+Best model selected (Phase 2, synthetic dataset): **Linear Regression** with **R² = 0.1819**.
+
+This relatively low R² is expected for early synthetic data and should improve after Phase 7 (real data integration) when the model is trained on richer user-generated signals.
+
+---
+
+## Feature Engineering
+
+Feature selection and modeling inputs are aligned with the documented schema in `data/schema.md`.
+
+Phase 2 preprocessing decisions (documented for the `scripts/preprocessing.py` pipeline) include:
+
+- Numeric feature scaling prior to model training to keep feature magnitudes comparable.
+- Categorical encoding for any non-numeric fields included in the training set.
+- Consistent train/inference preprocessing so serialized pipelines can reproduce transforms exactly.
+
+Derived features created during feature engineering are generated from the core biohacking inputs (sleep, activity, hydration, caffeine, and related signals) to support stronger predictive patterns as the dataset matures.
+
+---
+
+## Model Performance
+
+Phase 2 evaluation summary from `models/evaluation_report.md`:
+
+| Model | MSE | MAE | RMSE | R² |
+|---|---|---|---|---|
+| Linear Regression | 1.5341 | 1.0108 | 1.2386 | 0.1819 |
+| Gradient Boosting | 1.6527 | 1.0652 | 1.2856 | 0.1187 |
+| Random Forest | 1.6928 | 1.0631 | 1.3011 | 0.0973 |
+
+---
+
+## Running the ML Pipeline
+
+Run the Phase 2 ML workflow in order:
+
+```bash
+# Feature engineering
+python -m scripts.preprocessing
+
+# Model experimentation
+python -m scripts.run_evaluation
+
+# Serialize best model
+python -m scripts.run_serialization
+```
+
+---
+
+## Project Status
+
+- Phase 1: Foundation & Data ✅
+- Phase 2: ML Pipeline ✅
+- Phase 3: Backend API 🔜
