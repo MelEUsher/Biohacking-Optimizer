@@ -6,7 +6,6 @@
 [![Linting: Ruff](https://img.shields.io/badge/Linting-Ruff-blue)](https://docs.astral.sh/ruff/)
 
 ---
-
 <!-- TOC -->
 ## 📚 Table of Contents
 
@@ -44,10 +43,100 @@
 ---
 ## Overview
 
-This project builds a machine learning model that predicts personalized biohacking recommendations based on individual lifestyle data inputs (sleep patterns, workout intensity, supplement intake, screen time, etc.).  
-It follows a **Test-Driven Development (TDD)** approach: writing tests first, then building the functionality to pass those tests.
+This project evolves into a deployable ML-backed system that generates personalized biohacking recommendations based on structured lifestyle inputs (sleep patterns, workout intensity, supplement intake, screen time, etc.).  
+The long-term goal is a production-ready application where users persist data, receive predictions, and compare trends over time.
 
 ---
+
+## 🔍 System Overview
+
+Biohacking Optimizer is evolving into a production-ready ML-backed system with:
+
+- Isolated model inference service
+- Relational time-series user data tracking
+- Versioned model serialization
+- Test-driven backend architecture
+- CI/CD automated validation
+- Deployable multi-service infrastructure
+
+---
+## 🏗️ Production Architecture
+
+┌───────────────┐
+│     User      │
+└───────┬───────┘
+        │  HTTPS
+        v
+┌──────────────────────────────┐
+│  Application API (FastAPI)   │
+│  - Auth / Profiles           │
+│  - Daily Entries CRUD        │
+│  - Orchestrates Inference    │
+└───────┬───────────────┬──────┘
+        │               │
+        │ Internal HTTP │
+        │               │
+        v               v
+┌─────────────────┐   ┌──────────────────────────┐
+│ Model Service    │   │ PostgreSQL                │
+│ (FastAPI)        │   │ - users                   │
+│ - /predict       │   │ - daily_entries           │
+│ - model_version  │   │ - predictions             │
+└─────────────────┘   └──────────────────────────┘
+The API is the system of record; the model service is isolated for safe iteration and independent scaling.
+
+Biohacking Optimizer is designed as a two-service system.
+Designed to balance system stability with adaptable model iteration as new data sources and features are introduced.
+
+### Application API (FastAPI)
+- Handles authentication
+- Persists user inputs in PostgreSQL
+- Exposes CRUD endpoints for daily entries
+- Orchestrates model inference
+
+### Model Service (FastAPI)
+- Loads serialized ML model
+- Exposes `/predict` endpoint
+- Returns inference results to Application API
+
+The Application API communicates with the Model Service via internal HTTP.
+
+This separation:
+- Isolates model runtime from core application logic
+- Enables safe model iteration without disrupting user-facing systems
+- Supports independent scaling of inference workloads
+
+---
+
+## 🗃️ Data Model (Planned Production Schema)
+The schema supports longitudinal analytics, model version tracking, and future wearable data integrations.
+
+### Users
+- id (UUID)
+- email
+- password_hash
+- created_at
+
+### Daily_Entries
+- id (UUID)
+- user_id (FK)
+- date
+- sleep_hours
+- resting_heart_rate
+- caffeine_mg
+- steps
+- subjective_energy
+- created_at
+
+### Predictions
+- id (UUID)
+- user_id (FK)
+- entry_id (FK)
+- predicted_energy_score
+- model_version
+- created_at
+
+  ---
 
 ## Getting Started
 
@@ -258,6 +347,7 @@ This project is open-source and available under the [MIT License](LICENSE).
 - Inspiration from the biohacking, personal optimization, and data science communities.
 
 ---
+
 
 ## ✨ Project Status
 
