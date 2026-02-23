@@ -57,6 +57,7 @@ Biohacking Optimizer is evolving into a production-ready ML-backed system with:
 ---
 ## 🏗️ Production Architecture
 
+```
 ┌───────────────┐
 │     User      │
 └───────┬───────┘
@@ -70,14 +71,14 @@ Biohacking Optimizer is evolving into a production-ready ML-backed system with:
 └───────┬───────────────┬──────┘
         │               │
         │ Internal HTTP │
-        │               │
         v               v
 ┌─────────────────┐   ┌──────────────────────────┐
-│ Model Service    │   │ PostgreSQL                │
-│ (FastAPI)        │   │ - users                   │
-│ - /predict       │   │ - daily_entries           │
-│ - model_version  │   │ - predictions             │
+│  Model Service  │   │  PostgreSQL               │
+│  (FastAPI)      │   │  - users                  │
+│  - /predict     │   │  - daily_entries          │
+│  - model_version│   │  - predictions            │
 └─────────────────┘   └──────────────────────────┘
+```
 The API is the system of record; the model service is isolated for safe iteration and independent scaling.
 
 Biohacking Optimizer is designed as a two-service system.
