@@ -24,6 +24,7 @@ data/processed/*
 
 # Models
 *.pkl
+*.joblib
 
 # Virtual environments
 .env/
