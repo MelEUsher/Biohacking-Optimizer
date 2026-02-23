@@ -9,35 +9,30 @@
 <!-- TOC -->
 ## 📚 Table of Contents
 
-- [🧬 Biohacking Personal Optimization Predictor](#-biohacking-personal-optimization-predictor)
-  - [📚 Table of Contents](#-table-of-contents)
-  - [Overview](#overview)
-  - [Getting Started](#getting-started)
-  - [Project Goals](#project-goals)
-  - [Skills and Technologies Used](#skills-and-technologies-used)
-  - [Code Quality and Style](#code-quality-and-style)
-    - [How to Format Code](#how-to-format-code)
-    - [How to Lint Code](#how-to-lint-code)
-  - [All code should pass both Black formatting and Ruff linting before being committed.](#all-code-should-pass-both-black-formatting-and-ruff-linting-before-being-committed)
-  - [Project Structure](#project-structure)
-  - [Test-Driven Development Workflow](#test-driven-development-workflow)
-  - [Dataset(s)](#datasets)
-  - [How to Run the Project](#how-to-run-the-project)
-    - [1. Clone the Repository](#1-clone-the-repository)
-    - [2. Set Up the Virtual Environment](#2-set-up-the-virtual-environment)
-    - [3. Install Required Packages](#3-install-required-packages)
-    - [4. Running Tests](#4-running-tests)
-    - [5. Running the Streamlit App (Potential for Later)](#5-running-the-streamlit-app-potential-for-later)
-  - [Daily Workflow](#daily-workflow)
-  - [💼 Work Session Guidelines](#-work-session-guidelines)
-  - [License](#license)
-  - [Acknowledgments](#acknowledgments)
-  - [✨ Project Status](#-project-status)
-  - [🛤️ Roadmap](#️-roadmap)
-    - [Core Development](#core-development)
-    - [Machine Learning](#machine-learning)
-    - [Dashboard Development](#dashboard-development)
-    - [Code Quality and Maintenance](#code-quality-and-maintenance)
+- [Overview](#overview)
+- [🔍 System Overview](#-system-overview)
+- [🏗️ Production Architecture](#️-production-architecture)
+- [🗃️ Data Model](#️-data-model-planned-production-schema)
+- [Getting Started](#getting-started)
+- [Project Goals](#project-goals)
+- [Skills and Technologies Used](#skills-and-technologies-used)
+- [Code Quality and Style](#code-quality-and-style)
+- [Project Structure](#project-structure)
+- [Test-Driven Development Workflow](#test-driven-development-workflow)
+- [Dataset(s)](#datasets)
+- [How to Run the Project](#how-to-run-the-project)
+- [Daily Workflow](#daily-workflow)
+- [💼 Work Session Guidelines](#-work-session-guidelines)
+- [License](#license)
+- [Acknowledgments](#acknowledgments)
+- [✨ Project Status](#-project-status)
+- [🛤️ Roadmap](#️-roadmap)
+  - [Core Development](#core-development)
+  - [Backend & API](#backend--api)
+  - [Infrastructure & Deployment](#infrastructure--deployment)
+  - [Frontend](#frontend)
+  - [Code Quality and Maintenance](#code-quality-and-maintenance)
+- [🗺️ Production Plan](#️-production-plan)
 <!-- /TOC -->
 
 ---
@@ -419,3 +414,21 @@ The following milestones are planned to expand the Biohacking Personal Optimizat
 - [ ] Deploy to production with monitoring
 
 ---
+
+---
+
+## 🗺️ Production Plan
+
+This project follows a structured 9-phase development plan. Each phase uses Test-Driven Development (TDD) with full test coverage before implementation.
+
+| Phase | Focus | Status |
+|-------|-------|--------|
+| 1 | Foundation & Data | ✅ Complete |
+| 2 | ML Pipeline | 🔄 In Progress |
+| 3 | Backend API | ⏳ Planned |
+| 4 | CI/CD | ⏳ Planned |
+| 5 | Frontend Dashboard | ⏳ Planned |
+| 6 | Deployment | ⏳ Planned |
+| 7 | Real Data Integration | ⏳ Planned |
+| 8 | Final Sweep | ⏳ Planned |
+| 9 | HIPAA Compliance | ⏳ Planned |
