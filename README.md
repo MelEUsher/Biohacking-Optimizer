@@ -8,6 +8,8 @@
 ---
 <!-- TOC -->
 ## 📚 Table of Contents
+
+
 - [🧬 Biohacking Personal Optimization Predictor](#-biohacking-personal-optimization-predictor)
   - [📚 Table of Contents](#-table-of-contents)
   - [Overview](#overview)
@@ -43,17 +45,18 @@
   - [Code Quality and Style](#code-quality-and-style)
     - [How to Format Code](#how-to-format-code)
     - [How to Lint Code](#how-to-lint-code)
+  - [All code should pass both Black formatting and Ruff linting before being committed.](#all-code-should-pass-both-black-formatting-and-ruff-linting-before-being-committed)
   - [Project Structure](#project-structure)
   - [Test-Driven Development Workflow](#test-driven-development-workflow)
   - [Dataset(s)](#datasets)
   - [💼 Work Session Guidelines](#-work-session-guidelines)
+  - [🛤️ Project Roadmap](#️-project-roadmap)
   - [Model Development](#model-development)
   - [Feature Engineering](#feature-engineering)
   - [Model Performance](#model-performance)
   - [Running the ML Pipeline](#running-the-ml-pipeline)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
-  - [🛤️ Project Roadmap](#️-project-roadmap)
 <!-- /TOC -->
 
 ---
@@ -583,21 +586,6 @@ biohacking-optimizer/
 - `deactivate` to leave the virtual environment.
 - (Optional) `git diff`/`git diff --staged` plus `git commit` once you are ready to capture your progress.
 
----
-
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-## Acknowledgments
-
-- Open-source datasets and contributors.
-- Inspiration from the biohacking, personal optimization, and data science communities.
-
----
-
 ## 🛤️ Project Roadmap
 
 - [x] Phase 1: Foundation & Data
@@ -721,3 +709,16 @@ python -m scripts.run_evaluation
 # Serialize best model
 python -m scripts.run_serialization
 ```
+
+---
+
+## License
+
+This project is open-source and available under the [MIT License](LICENSE).
+
+---
+
+## Acknowledgments
+
+- Open-source datasets and contributors.
+- Inspiration from the biohacking, personal optimization, and data science communities.
