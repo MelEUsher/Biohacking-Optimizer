@@ -8,7 +8,6 @@
 ---
 <!-- TOC -->
 ## 📚 Table of Contents
-
 - [Overview](#overview)
 - [🔍 System Overview](#-system-overview)
 - [🏗️ Production Architecture](#️-production-architecture)
@@ -35,7 +34,10 @@
   - [Infrastructure & Deployment](#infrastructure--deployment)
   - [Frontend](#frontend)
   - [Code Quality and Maintenance](#code-quality-and-maintenance)
-- [🗺️ Production Plan](#️-production-plan)
+- [Model Development](#model-development)
+- [Feature Engineering](#feature-engineering)
+- [Model Performance](#model-performance)
+- [Running the ML Pipeline](#running-the-ml-pipeline)
 <!-- /TOC -->
 
 ---
@@ -639,23 +641,68 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-
 ## ✨ Project Status
 
-> **Phase 1: Foundation & Data - COMPLETE ✅**
-> 
-> ✅ Synthetic biohacking dataset generated (500+ rows)  
-> ✅ Data versioning structure (raw/interim/processed directories)  
-> ✅ Exploratory Data Analysis completed with reusable utilities  
-> ✅ Data schema documented (feature descriptions, types, ranges)  
-> ✅ README updated with setup and workflow instructions  
-> ✅ All Phase 1 tests passing (25/25)
-> 
-> 🎯 **Next: Phase 2 - ML Pipeline**
-> - Feature engineering & preprocessing
-> - Model experimentation (multiple algorithms)
-> - Model evaluation & selection
-> - Model serialization for deployment
+- [x] Phase 1: Foundation & Data
+  - [x] Generate synthetic biohacking dataset
+  - [x] Set up data versioning and storage structure
+  - [x] Exploratory Data Analysis (EDA)
+  - [x] Document data schema and feature descriptions
+  - [x] Update README
+- [x] Phase 2: ML Pipeline
+  - [x] Feature engineering & preprocessing
+  - [x] Model experimentation (multiple algorithms)
+  - [x] Model evaluation & selection
+  - [x] Model serialization
+  - [x] Update README
+- [ ] Phase 3: Backend API (In Progress)
+  - [x] FastAPI setup & project structure
+  - [x] PostgreSQL setup & database schema migrations
+  - [x] User authentication (JWT/OAuth2)
+  - [x] Daily entries CRUD endpoints
+  - [ ] Create prediction endpoint
+  - [ ] Application API orchestration - connect to Model Service
+  - [ ] Add input validation
+  - [ ] API testing (pytest)
+  - [ ] Update README
+- [ ] Phase 4: CI/CD
+  - [ ] GitHub Actions for automated testing
+  - [ ] Linting/formatting checks in CI
+  - [ ] Model testing in CI pipeline
+  - [ ] Update README
+- [ ] Phase 5: Frontend Dashboard
+  - [ ] Streamlit app structure
+  - [ ] Input form for user data
+  - [ ] Display predictions & visualizations
+  - [ ] Connect to FastAPI backend
+  - [ ] Update README
+- [ ] Phase 6: Deployment
+  - [ ] Deploy FastAPI to Render/Railway
+  - [ ] Deploy Streamlit to Streamlit Cloud
+  - [ ] Integration testing
+  - [ ] Update README
+- [ ] Phase 7: Real Data Integration
+  - [ ] Apple Health export integration
+  - [ ] Oura API integration
+  - [ ] Compare synthetic vs real model performance
+  - [ ] Update README
+- [ ] Phase 8: Final Sweep
+  - [ ] Code review and refactoring
+  - [ ] Security audit
+  - [ ] Performance testing
+  - [ ] Documentation audit
+  - [ ] Accessibility review
+  - [ ] Final README polish
+- [ ] Phase 9: HIPAA Compliance
+  - [ ] HIPAA compliance assessment and gap analysis
+  - [ ] Data encryption at rest and in transit
+  - [ ] Access controls and authentication
+  - [ ] Audit logging and monitoring
+  - [ ] Data privacy and anonymization
+  - [ ] Business Associate Agreement (BAA) preparation
+  - [ ] Incident response and breach notification plan
+  - [ ] HIPAA compliance training documentation
+  - [ ] Update README
 
 ---
 
@@ -708,25 +755,6 @@ The following milestones are planned to expand the Biohacking Personal Optimizat
 
 ---
 
----
-
-## 🗺️ Production Plan
-
-This project follows a structured 9-phase development plan. Each phase uses Test-Driven Development (TDD) with full test coverage before implementation.
-
-| Phase | Focus | Status |
-|-------|-------|--------|
-| 1 | Foundation & Data | ✅ Complete |
-| 2 | ML Pipeline | 🔄 In Progress |
-| 3 | Backend API | ⏳ Planned |
-| 4 | CI/CD | ⏳ Planned |
-| 5 | Frontend Dashboard | ⏳ Planned |
-| 6 | Deployment | ⏳ Planned |
-| 7 | Real Data Integration | ⏳ Planned |
-| 8 | Final Sweep | ⏳ Planned |
-| 9 | HIPAA Compliance | ⏳ Planned |
-
----
 
 ## Model Development
 
@@ -786,11 +814,3 @@ python -m scripts.run_evaluation
 # Serialize best model
 python -m scripts.run_serialization
 ```
-
----
-
-## Project Status
-
-- Phase 1: Foundation & Data ✅
-- Phase 2: ML Pipeline ✅
-- Phase 3: Backend API 🔜
