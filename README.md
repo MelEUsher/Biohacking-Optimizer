@@ -16,6 +16,7 @@
 - [Getting Started](#getting-started)
 - [Database Setup (PostgreSQL + Alembic)](#database-setup-postgresql--alembic)
 - [Authentication](#authentication)
+- [Daily Entries CRUD](#daily-entries-crud)
 - [Project Goals](#project-goals)
 - [Skills and Technologies Used](#skills-and-technologies-used)
 - [Code Quality and Style](#code-quality-and-style)
@@ -162,6 +163,8 @@ Follow these steps to prepare a local development environment that mirrors the p
    python -m pytest
    ```
 
+Note: Depending on your system configuration, you may need to use `python3` instead of `python`, and `python3 -m pytest` instead of `pytest` when running commands. This is common on macOS systems where both Python 2 and Python 3 are installed.
+
 ---
 
 ## Database Setup (PostgreSQL + Alembic)
@@ -258,6 +261,180 @@ Register:
 curl -X POST http://127.0.0.1:8000/auth/register \
   -H "Content-Type: application/json" \
   -d '{"email":"user@example.com","password":"StrongPass123!"}'
+
+---
+
+## Daily Entries CRUD
+
+All Daily Entries endpoints require authentication.
+
+- Send `Authorization: Bearer <access_token>` on every request.
+- Each user can only access their own entries.
+- `403` is returned for entries owned by another user.
+- `404` is returned when an entry does not exist.
+
+### Endpoints
+
+- `POST /entries`: Create a new daily entry for the authenticated user.
+- `GET /entries`: List all daily entries for the authenticated user.
+- `GET /entries/{id}`: Retrieve one daily entry by ID (ownership enforced).
+- `PUT /entries/{id}`: Replace/update a daily entry by ID (ownership enforced).
+- `DELETE /entries/{id}`: Delete a daily entry by ID (ownership enforced).
+
+### Entry Fields
+
+Request body (`POST`, `PUT`) fields:
+
+- `sleep_hours` (number)
+- `workout_intensity` (string)
+- `supplement_intake` (string or `null`)
+- `screen_time` (number)
+- `stress_level` (integer)
+- `date` (ISO date string, `YYYY-MM-DD`)
+
+Response body (`POST`, `GET`, `PUT`) fields:
+
+- `id`
+- `sleep_hours`
+- `workout_intensity`
+- `supplement_intake`
+- `screen_time`
+- `stress_level`
+- `date`
+
+### `POST /entries` (Create)
+
+Example request:
+
+```bash
+curl -X POST http://127.0.0.1:8000/entries \
+  -H "Authorization: Bearer <access_token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "date": "2026-02-20",
+    "sleep_hours": 7.5,
+    "workout_intensity": "moderate",
+    "supplement_intake": "magnesium, vitamin d",
+    "screen_time": 4.0,
+    "stress_level": 3
+  }'
+```
+
+Example response (`201 Created`):
+
+```json
+{
+  "id": 1,
+  "sleep_hours": 7.5,
+  "workout_intensity": "moderate",
+  "supplement_intake": "magnesium, vitamin d",
+  "screen_time": 4.0,
+  "stress_level": 3,
+  "date": "2026-02-20"
+}
+```
+
+### `GET /entries` (List)
+
+Example request:
+
+```bash
+curl -X GET http://127.0.0.1:8000/entries \
+  -H "Authorization: Bearer <access_token>"
+```
+
+Example response (`200 OK`):
+
+```json
+[
+  {
+    "id": 1,
+    "sleep_hours": 7.5,
+    "workout_intensity": "moderate",
+    "supplement_intake": "magnesium, vitamin d",
+    "screen_time": 4.0,
+    "stress_level": 3,
+    "date": "2026-02-20"
+  },
+  {
+    "id": 2,
+    "sleep_hours": 8.0,
+    "workout_intensity": "high",
+    "supplement_intake": "creatine",
+    "screen_time": 2.5,
+    "stress_level": 2,
+    "date": "2026-02-21"
+  }
+]
+```
+
+### `GET /entries/{id}` (Retrieve One)
+
+Example request:
+
+```bash
+curl -X GET http://127.0.0.1:8000/entries/1 \
+  -H "Authorization: Bearer <access_token>"
+```
+
+Example response (`200 OK`):
+
+```json
+{
+  "id": 1,
+  "sleep_hours": 7.5,
+  "workout_intensity": "moderate",
+  "supplement_intake": "magnesium, vitamin d",
+  "screen_time": 4.0,
+  "stress_level": 3,
+  "date": "2026-02-20"
+}
+```
+
+### `PUT /entries/{id}` (Update)
+
+Example request:
+
+```bash
+curl -X PUT http://127.0.0.1:8000/entries/1 \
+  -H "Authorization: Bearer <access_token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "date": "2026-02-21",
+    "sleep_hours": 8.25,
+    "workout_intensity": "high",
+    "supplement_intake": "creatine",
+    "screen_time": 2.5,
+    "stress_level": 1
+  }'
+```
+
+Example response (`200 OK`):
+
+```json
+{
+  "id": 1,
+  "sleep_hours": 8.25,
+  "workout_intensity": "high",
+  "supplement_intake": "creatine",
+  "screen_time": 2.5,
+  "stress_level": 1,
+  "date": "2026-02-21"
+}
+```
+
+### `DELETE /entries/{id}` (Delete)
+
+Example request:
+
+```bash
+curl -X DELETE http://127.0.0.1:8000/entries/1 \
+  -H "Authorization: Bearer <access_token>"
+```
+
+Example response (`204 No Content`):
+
+No response body is returned.
 ```
 
 Login:
