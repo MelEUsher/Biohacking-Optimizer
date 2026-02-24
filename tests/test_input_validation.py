@@ -128,7 +128,7 @@ def test_predict_request_sleep_hours_below_zero_returns_422():
 
     response = predict_client.post("/predict", json=payload)
 
-    _assert_422_detail(response, "sleep_hours must be between 0 and 12 hours")
+    _assert_422_detail(response, "sleep_hours must be between 0 and 24 hours")
 
 
 def test_predict_request_sleep_hours_above_24_returns_422():
@@ -137,7 +137,7 @@ def test_predict_request_sleep_hours_above_24_returns_422():
 
     response = predict_client.post("/predict", json=payload)
 
-    _assert_422_detail(response, "sleep_hours must be between 0 and 12 hours")
+    _assert_422_detail(response, "sleep_hours must be between 0 and 24 hours")
 
 
 def test_predict_request_stress_level_below_1_returns_422():

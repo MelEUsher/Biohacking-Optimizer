@@ -85,9 +85,9 @@ class PredictRequest(BaseModel):
     @field_validator("sleep_hours")
     @classmethod
     def validate_predict_sleep_hours(cls, value: float) -> float:
-        if 0 <= value <= 12:
+        if 0 <= value <= 24:
             return value
-        raise ValueError("sleep_hours must be between 0 and 12 hours.")
+        raise ValueError("sleep_hours must be between 0 and 24 hours.")
 
     @field_validator("workout_intensity")
     @classmethod

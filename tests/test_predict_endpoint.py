@@ -45,7 +45,7 @@ def test_post_predict_with_missing_required_fields_returns_422():
 
 def test_post_predict_with_out_of_range_values_returns_422():
     payload = _valid_payload()
-    payload["sleep_hours"] = 20.0
+    payload["sleep_hours"] = 24.1
 
     response = client.post("/predict", json=payload)
 
