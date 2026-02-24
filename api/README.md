@@ -86,6 +86,39 @@ Example response:
 }
 ```
 
+## Validation Rules
+
+The API uses Pydantic request schemas for input validation. Invalid requests return
+`422 Unprocessable Entity` with a `detail` field describing validation errors.
+
+### `PredictRequest` (`POST /predict`)
+
+- `sleep_hours` (`float`, required): accepted range `0.0` to `12.0`
+  - Example error: `sleep_hours must be between 0 and 12 hours.`
+- `workout_intensity` (`float`, required): accepted range `1.0` to `10.0`
+  - Example error: `workout_intensity must be between 1 and 10.`
+- `supplement_intake` (`float`, required): accepted range `0.0` to `10.0`
+  - Example error: `supplement_intake must be between 0 and 10.`
+- `screen_time` (`float`, required): accepted range `0.0` to `16.0`
+  - Example error: `screen_time must be between 0 and 16 hours.`
+- `stress_level` (`int`, optional): accepted range `1` to `10` when provided
+  - Example error: `stress_level must be between 1 and 10.`
+
+### `EntryCreate` / Daily Entry Request (`POST /entries`, `PUT /entries/{id}`)
+
+- `sleep_hours` (`float`, required): accepted range `0.0` to `24.0`
+  - Example error: `sleep_hours must be between 0 and 24 hours.`
+- `screen_time` (`float`, required): accepted range `0.0` to `24.0`
+  - Example error: `screen_time must be between 0 and 24 hours.`
+- `stress_level` (`int`, required): accepted range `1` to `10`
+  - Example error: `stress_level must be between 1 and 10.`
+- `workout_intensity` (`str`, required): non-empty string (whitespace-only rejected)
+  - Example error: `workout_intensity must not be empty.`
+- `supplement_intake` (`str | null`, optional): if provided, must be non-empty
+  - Example error: `supplement_intake must not be empty when provided.`
+- `date` (`YYYY-MM-DD`, required): ISO date format
+  - Example error (FastAPI/Pydantic): invalid date format in `detail`
+
 ## Entries to Model Service Orchestration
 
 When a client submits `POST /entries`, the API orchestrates a follow-up prediction request:
