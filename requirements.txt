@@ -55,3 +55,6 @@ typing_extensions==4.13.2
 tzdata==2025.2
 urllib3==2.4.0
 alembic==1.18.4
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.20
