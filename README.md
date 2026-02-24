@@ -568,7 +568,7 @@ biohacking-optimizer/
 
 ---
 
-## 💼 Work Session Guidelines
+## 💼 Daily Workflow
 
 **Start a session** – run these commands from the repo root in sequence:
 - `git pull` (when collaborating) to sync the latest changes.
