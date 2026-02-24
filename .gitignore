@@ -27,6 +27,7 @@ data/processed/*
 *.joblib
 
 # Virtual environments
+.env
 .env/
 .venv/
 env/

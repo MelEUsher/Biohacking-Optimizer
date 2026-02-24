@@ -14,6 +14,7 @@
 - [🏗️ Production Architecture](#️-production-architecture)
 - [🗃️ Data Model](#️-data-model-planned-production-schema)
 - [Getting Started](#getting-started)
+- [Database Setup (PostgreSQL + Alembic)](#database-setup-postgresql--alembic)
 - [Project Goals](#project-goals)
 - [Skills and Technologies Used](#skills-and-technologies-used)
 - [Code Quality and Style](#code-quality-and-style)
@@ -159,6 +160,53 @@ Follow these steps to prepare a local development environment that mirrors the p
    ```bash
    python -m pytest
    ```
+
+---
+
+## Database Setup (PostgreSQL + Alembic)
+
+This project uses PostgreSQL for persistent application data and Alembic for schema migrations.
+
+### Configure `DATABASE_URL`
+
+1. Copy `.env.example` to `.env`.
+2. Set your PostgreSQL connection string in `.env`:
+
+```bash
+DATABASE_URL=postgresql://user:password@localhost:5432/biohacking
+```
+
+The application and Alembic read the database connection from `DATABASE_URL` only. Do not hardcode credentials in code.
+
+### Install Dependencies
+
+Install project dependencies (including SQLAlchemy, Alembic, `psycopg2-binary`, and `python-dotenv`):
+
+```bash
+pip install -r requirements.txt
+```
+
+### Run Migrations
+
+Generate a new migration after model changes:
+
+```bash
+alembic revision --autogenerate -m "describe change"
+```
+
+Apply migrations manually as a deployment/setup step:
+
+```bash
+alembic upgrade head
+```
+
+Note: migrations are not applied automatically by the codebase.
+
+### Table Descriptions
+
+- `users`: Stores user accounts (`email`) and audit timestamps.
+- `daily_entries`: Stores daily biohacking inputs per user (sleep, workout intensity, supplements, screen time, stress, and entry date).
+- `predictions`: Stores model prediction outputs and recommendations linked to a user and daily entry.
 
 ---
 
