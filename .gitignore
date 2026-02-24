@@ -26,6 +26,7 @@ data/processed/*
 *.pkl
 
 # Virtual environments
+.env
 .env/
 .venv/
 env/
