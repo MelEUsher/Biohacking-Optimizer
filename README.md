@@ -43,31 +43,17 @@
   - [Code Quality and Style](#code-quality-and-style)
     - [How to Format Code](#how-to-format-code)
     - [How to Lint Code](#how-to-lint-code)
-  - [All code should pass both Black formatting and Ruff linting before being committed.](#all-code-should-pass-both-black-formatting-and-ruff-linting-before-being-committed)
   - [Project Structure](#project-structure)
   - [Test-Driven Development Workflow](#test-driven-development-workflow)
   - [Dataset(s)](#datasets)
-  - [How to Run the Project](#how-to-run-the-project)
-    - [1. Clone the Repository](#1-clone-the-repository)
-    - [2. Set Up the Virtual Environment](#2-set-up-the-virtual-environment)
-    - [3. Install Required Packages](#3-install-required-packages)
-    - [4. Running Tests](#4-running-tests)
-    - [5. Running the Streamlit App (Potential for Later)](#5-running-the-streamlit-app-potential-for-later)
-  - [Daily Workflow](#daily-workflow)
   - [💼 Work Session Guidelines](#-work-session-guidelines)
-  - [License](#license)
-  - [Acknowledgments](#acknowledgments)
-  - [✨ Project Status](#-project-status)
-  - [🛤️ Roadmap](#️-roadmap)
-    - [Core Development](#core-development)
-    - [Backend \& API](#backend--api)
-    - [Infrastructure \& Deployment](#infrastructure--deployment)
-    - [Frontend](#frontend)
-    - [Code Quality and Maintenance](#code-quality-and-maintenance)
   - [Model Development](#model-development)
   - [Feature Engineering](#feature-engineering)
   - [Model Performance](#model-performance)
   - [Running the ML Pipeline](#running-the-ml-pipeline)
+  - [License](#license)
+  - [Acknowledgments](#acknowledgments)
+  - [🛤️ Project Roadmap](#️-project-roadmap)
 <!-- /TOC -->
 
 ---
@@ -295,6 +281,21 @@ curl -X POST http://127.0.0.1:8000/auth/register \
   -d '{"email":"user@example.com","password":"StrongPass123!"}'
 ```
 
+Login:
+
+```bash
+curl -X POST http://127.0.0.1:8000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"user@example.com","password":"StrongPass123!"}'
+```
+
+Protected route (`/auth/me`) with token:
+
+```bash
+curl http://127.0.0.1:8000/auth/me \
+  -H "Authorization: Bearer <access_token>"
+```
+
 ---
 
 ## Daily Entries CRUD
@@ -468,22 +469,6 @@ curl -X DELETE http://127.0.0.1:8000/entries/1 \
 Example response (`204 No Content`):
 
 No response body is returned.
-```
-
-Login:
-
-```bash
-curl -X POST http://127.0.0.1:8000/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"user@example.com","password":"StrongPass123!"}'
-```
-
-Protected route (`/auth/me`) with token:
-
-```bash
-curl http://127.0.0.1:8000/auth/me \
-  -H "Authorization: Bearer <access_token>"
-```
 
 ---
 
@@ -584,65 +569,6 @@ biohacking-optimizer/
 
 ---
 
-## How to Run the Project
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/YOUR-USERNAME/biohacking-optimizer.git
-cd biohacking-optimizer
-```
-
-### 2. Set Up the Virtual Environment
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### 3. Install Required Packages
-
-```bash
-pip install -r requirements.txt
-```
-
-### 4. Running Tests
-
-```bash
-pytest
-```
-
-### 5. Running the Streamlit App (Potential for Later)
-
-```bash
-streamlit run dashboard/app.py
-```
-
-## Daily Workflow
-
-Maintain focus on Fast Feedback and consistent quality by following this daily rhythm:
-
-- Activate the shared virtual environment (start a session):
-  ```bash
-  source .venv/bin/activate
-  ```
-- Deactivate the environment when you stop working (end a session):
-  ```bash
-  deactivate
-  ```
-- Run the core test suite:
-  ```bash
-  python -m pytest
-  ```
-- Format code before committing:
-  ```bash
-  black .
-  ```
-- Lint with Ruff before pushing:
-  ```bash
-  ruff check .
-  ```
-
 ## 💼 Work Session Guidelines
 
 **Start a session** – run these commands from the repo root in sequence:
@@ -672,7 +598,7 @@ This project is open-source and available under the [MIT License](LICENSE).
 
 ---
 
-## ✨ Project Status
+## 🛤️ Project Roadmap
 
 - [x] Phase 1: Foundation & Data
   - [x] Generate synthetic biohacking dataset
@@ -736,56 +662,6 @@ This project is open-source and available under the [MIT License](LICENSE).
   - [ ] Update README
 
 ---
-
-## 🛤️ Roadmap
-
-The following milestones are planned to expand the Biohacking Personal Optimization Predictor project:
-
-### Core Development
-- [x] Set up virtual environment, GitHub repo, and project structure
-- [x] Configure Pytest for Test-Driven Development (TDD)
-- [x] Configure Black for code formatting and Ruff for linting
-- [x] Generate synthetic biohacking dataset
-- [x] Set up data versioning/storage structure
-- [x] Build data cleaning utilities with 100% test coverage
-- [x] Perform Exploratory Data Analysis (EDA)
-- [x] Document data schema and feature descriptions
-- [x] Update README with setup and session management
-- [ ] Feature engineering & preprocessing pipeline
-- [ ] Model experimentation (multiple algorithms)
-- [ ] Model evaluation & selection
-- [ ] Model serialization for deployment
-
-### Backend & API
-- [ ] Feature engineering & preprocessing pipeline
-- [ ] Model experimentation and evaluation (MSE, MAE, R²)
-- [ ] Model serialization and versioning
-- [ ] Application API (FastAPI) — auth, CRUD, PostgreSQL integration
-- [ ] Model Service (FastAPI) — isolated inference endpoint
-- [ ] Input validation using Pydantic
-
-### Infrastructure & Deployment
-- [ ] Set up GitHub Actions for CI/CD
-- [ ] Automated testing and code quality checks in CI
-- [ ] Containerize services with Docker
-- [ ] Deploy Application API and Model Service to cloud
-- [ ] Deploy Streamlit frontend
-
-### Frontend
-- [ ] Streamlit dashboard for user input and predictions
-- [ ] Visualizations for trends and insights
-- [ ] Connect frontend to Application API
-
-### Code Quality and Maintenance
-- [x] Maintain 100% passing unit tests
-- [x] Maintain formatting and linting standards across all code
-- [x] Update README and documentation as project evolves
-- [ ] Set up GitHub Actions for CI/CD
-- [ ] Add automated testing and code quality checks
-- [ ] Deploy to production with monitoring
-
----
-
 
 ## Model Development
 
