@@ -1,14 +1,19 @@
 from __future__ import annotations
 
+import asyncio
+import logging
+
 from fastapi import APIRouter, Depends, HTTPException, Response, status
 from sqlalchemy.orm import Session
 
 from api.auth import get_current_user
 from api.database import get_session
-from api.models.db_models import DailyEntry, User
+from api.models.db_models import DailyEntry, Prediction, User
 from api.models.schemas import EntryCreate, EntryResponse
+from api.utils.model_client import ModelServiceError, call_model_service
 
 router = APIRouter(prefix="/entries", tags=["entries"])
+logger = logging.getLogger(__name__)
 
 
 def _get_entry_or_404(entry_id: int, db: Session) -> DailyEntry:
@@ -39,6 +44,27 @@ def create_entry(
     db.add(entry)
     db.commit()
     db.refresh(entry)
+
+    try:
+        model_result = asyncio.run(call_model_service(payload.model_dump(mode="json")))
+        prediction = Prediction(
+            entry_id=entry.id,
+            user_id=current_user.id,
+            prediction=float(model_result["prediction"]),
+            recommendation=str(model_result["recommendation"]),
+        )
+        db.add(prediction)
+        db.commit()
+    except ModelServiceError as exc:
+        db.rollback()
+        logger.exception(
+            "Model Service unavailable while processing entry %s", entry.id
+        )
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Model Service unavailable",
+        ) from exc
+
     return entry
 
 

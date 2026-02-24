@@ -80,9 +80,9 @@ def test_tables_have_expected_columns_and_data_types():
         "predictions": {
             "id": sa.Integer,
             "user_id": sa.Integer,
-            "daily_entry_id": sa.Integer,
-            "prediction_score": sa.Float,
-            "recommendations": sa.Text,
+            "entry_id": sa.Integer,
+            "prediction": sa.Float,
+            "recommendation": sa.String,
             "created_at": sa.DateTime,
         },
     }
