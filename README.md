@@ -606,8 +606,8 @@ biohacking-optimizer/
   - [x] User authentication (JWT/OAuth2)
   - [x] Daily entries CRUD endpoints
   - [x] Create prediction endpoint
-  - [ ] Application API orchestration - connect to Model Service
-  - [ ] Add input validation
+  - [x] Application API orchestration - connect to Model Service
+  - [x] Add input validation
   - [ ] API testing (pytest)
   - [ ] Update README
 - [ ] Phase 4: CI/CD
