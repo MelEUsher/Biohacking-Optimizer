@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from api.database import Base, get_session
 from api.main import app
 from api.models.db_models import DailyEntry, User
+import api.routers.entries as entries_router
 
 
 @pytest.fixture
@@ -32,6 +33,12 @@ def client(tmp_path, monkeypatch):
     monkeypatch.setenv("SECRET_KEY", "test-secret-key")
     monkeypatch.setenv("ALGORITHM", "HS256")
     monkeypatch.setenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30")
+    monkeypatch.setenv("MODEL_SERVICE_URL", "http://model-service.test")
+
+    async def fake_call_model_service(_entry_data):
+        return {"prediction": 0.75, "recommendation": "Stay consistent"}
+
+    monkeypatch.setattr(entries_router, "call_model_service", fake_call_model_service)
 
     with TestClient(app) as test_client:
         yield test_client, testing_session_local

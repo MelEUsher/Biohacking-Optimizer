@@ -306,6 +306,10 @@ All Daily Entries endpoints require authentication.
 - `403` is returned for entries owned by another user.
 - `404` is returned when an entry does not exist.
 
+## Daily Workflow
+
+The intended loop is to submit a daily entry, review the resulting prediction/recommendation output, and use that feedback to plan the next day.
+
 ### Endpoints
 
 - `POST /entries`: Create a new daily entry for the authenticated user.

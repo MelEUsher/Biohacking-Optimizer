@@ -61,11 +61,11 @@ class Prediction(Base):
     user_id: Mapped[int] = mapped_column(
         ForeignKey("users.id"), nullable=False, index=True
     )
-    daily_entry_id: Mapped[int] = mapped_column(
+    entry_id: Mapped[int] = mapped_column(
         ForeignKey("daily_entries.id"), nullable=False, index=True
     )
-    prediction_score: Mapped[float] = mapped_column(Float, nullable=False)
-    recommendations: Mapped[str] = mapped_column(Text, nullable=False)
+    prediction: Mapped[float] = mapped_column(Float, nullable=False)
+    recommendation: Mapped[str] = mapped_column(String(255), nullable=False)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
