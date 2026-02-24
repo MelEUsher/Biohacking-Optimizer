@@ -15,6 +15,7 @@
 - [🗃️ Data Model](#️-data-model-planned-production-schema)
 - [Getting Started](#getting-started)
 - [Database Setup (PostgreSQL + Alembic)](#database-setup-postgresql--alembic)
+- [Authentication](#authentication)
 - [Project Goals](#project-goals)
 - [Skills and Technologies Used](#skills-and-technologies-used)
 - [Code Quality and Style](#code-quality-and-style)
@@ -178,6 +179,23 @@ DATABASE_URL=postgresql://user:password@localhost:5432/biohacking
 
 The application and Alembic read the database connection from `DATABASE_URL` only. Do not hardcode credentials in code.
 
+### Contributor `.env` Setup (Required)
+
+Create your own local `.env` file using `.env.example` as the template:
+
+```bash
+cp .env.example .env
+```
+
+Set these values in your local `.env`:
+
+- `DATABASE_URL`: Create a free PostgreSQL database at `neon.tech` and paste the connection string Neon provides.
+- `SECRET_KEY`: Generate a strong secret with `openssl rand -hex 32` and use the output value.
+- `ALGORITHM`: Use `HS256`.
+- `ACCESS_TOKEN_EXPIRE_MINUTES`: Use `30`.
+
+Important: `.env` is gitignored and must never be committed.
+
 ### Install Dependencies
 
 Install project dependencies (including SQLAlchemy, Alembic, `psycopg2-binary`, and `python-dotenv`):
@@ -207,6 +225,55 @@ Note: migrations are not applied automatically by the codebase.
 - `users`: Stores user accounts (`email`) and audit timestamps.
 - `daily_entries`: Stores daily biohacking inputs per user (sleep, workout intensity, supplements, screen time, stress, and entry date).
 - `predictions`: Stores model prediction outputs and recommendations linked to a user and daily entry.
+
+---
+
+## Authentication
+
+The API uses JWT-based authentication for user access.
+
+### Auth Flow
+
+1. Register a user with `POST /auth/register` (email + password).
+2. Login with `POST /auth/login` using the same credentials.
+3. Receive a JWT access token (`bearer` token).
+4. Send the token in the `Authorization` header (`Bearer <token>`) to access protected routes such as `GET /auth/me`.
+
+### Required Environment Variables
+
+Add these values to `.env` (see `.env.example`):
+
+```bash
+DATABASE_URL=postgresql://user:password@localhost:5432/biohacking
+SECRET_KEY=your-secret-key-here
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+
+### Example Requests
+
+Register:
+
+```bash
+curl -X POST http://127.0.0.1:8000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email":"user@example.com","password":"StrongPass123!"}'
+```
+
+Login:
+
+```bash
+curl -X POST http://127.0.0.1:8000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"user@example.com","password":"StrongPass123!"}'
+```
+
+Protected route (`/auth/me`) with token:
+
+```bash
+curl http://127.0.0.1:8000/auth/me \
+  -H "Authorization: Bearer <access_token>"
+```
 
 ---
 
