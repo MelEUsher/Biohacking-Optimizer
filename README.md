@@ -24,6 +24,10 @@
     - [Install Dependencies](#install-dependencies)
     - [Run Migrations](#run-migrations)
     - [Table Descriptions](#table-descriptions)
+  - [API Documentation](#api-documentation)
+    - [Run the API Locally](#run-the-api-locally)
+    - [Endpoint Overview](#endpoint-overview)
+    - [API Testing (Pytest)](#api-testing-pytest)
   - [Authentication](#authentication)
     - [Auth Flow](#auth-flow)
     - [Required Environment Variables](#required-environment-variables)
@@ -245,6 +249,55 @@ Note: migrations are not applied automatically by the codebase.
 - `users`: Stores user accounts (`email`) and audit timestamps.
 - `daily_entries`: Stores daily biohacking inputs per user (sleep, workout intensity, supplements, screen time, stress, and entry date).
 - `predictions`: Stores model prediction outputs and recommendations linked to a user and daily entry.
+
+---
+
+## API Documentation
+
+This README includes Phase 3 API usage details for authentication and daily entries CRUD. Use the sections below (`Authentication` and `Daily Entries CRUD`) for full request/response examples.
+
+### Run the API Locally
+
+Start the FastAPI application from the repo root:
+
+```bash
+uvicorn api.main:app --reload
+```
+
+The API will be available at `http://127.0.0.1:8000`.
+
+### Endpoint Overview
+
+- `POST /auth/register`: Register a new user account.
+- `POST /auth/login`: Authenticate and return a JWT access token.
+- `GET /auth/me`: Return the authenticated user profile.
+- `POST /entries`: Create a daily entry for the authenticated user.
+- `GET /entries`: List daily entries for the authenticated user.
+- `GET /entries/{id}`: Retrieve a single daily entry (ownership enforced).
+- `PUT /entries/{id}`: Update a daily entry (ownership enforced).
+- `DELETE /entries/{id}`: Delete a daily entry (ownership enforced).
+
+Detailed example API requests are documented in the `Authentication` and `Daily Entries CRUD` sections below.
+
+### API Testing (Pytest)
+
+Run the API-focused test suite from the repo root:
+
+```bash
+pytest tests/test_api.py -v
+```
+
+You can also run related endpoint tests, such as authentication and entries coverage:
+
+```bash
+pytest tests/test_auth.py tests/test_entries.py -v
+```
+
+Run the full suite before committing:
+
+```bash
+python -m pytest
+```
 
 ---
 
@@ -600,7 +653,7 @@ biohacking-optimizer/
   - [x] Model evaluation & selection
   - [x] Model serialization
   - [x] Update README
-- [ ] Phase 3: Backend API (In Progress)
+- [x] Phase 3: Backend API (Complete)
   - [x] FastAPI setup & project structure
   - [x] PostgreSQL setup & database schema migrations
   - [x] User authentication (JWT/OAuth2)
@@ -608,9 +661,9 @@ biohacking-optimizer/
   - [x] Create prediction endpoint
   - [x] Application API orchestration - connect to Model Service
   - [x] Add input validation
-  - [ ] API testing (pytest)
-  - [ ] Update README
-- [ ] Phase 4: CI/CD
+  - [x] API testing (pytest)
+  - [x] Update README
+- [ ] Phase 4: CI/CD (Next)
   - [ ] GitHub Actions for automated testing
   - [ ] Linting/formatting checks in CI
   - [ ] Model testing in CI pipeline
