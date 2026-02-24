@@ -45,7 +45,7 @@
   - [Project Structure](#project-structure)
   - [Test-Driven Development Workflow](#test-driven-development-workflow)
   - [Dataset(s)](#datasets)
-  - [💼 Work Session Guidelines](#-work-session-guidelines)
+  - [💼 Daily Workflow](#-daily-workflow)
   - [🛤️ Project Roadmap](#️-project-roadmap)
   - [Model Development](#model-development)
   - [Feature Engineering](#feature-engineering)
@@ -305,10 +305,6 @@ All Daily Entries endpoints require authentication.
 - Each user can only access their own entries.
 - `403` is returned for entries owned by another user.
 - `404` is returned when an entry does not exist.
-
-## Daily Workflow
-
-The intended loop is to submit a daily entry, review the resulting prediction/recommendation output, and use that feedback to plan the next day.
 
 ### Endpoints
 
@@ -575,11 +571,15 @@ biohacking-optimizer/
 ## 💼 Daily Workflow
 
 **Start a session** – run these commands from the repo root in sequence:
-- `git pull` (when collaborating) to sync the latest changes.
+- `git checkout main` 
+- `git pull origin main` (when collaborating) to sync the latest changes.
 - `python3 -m venv .venv && source .venv/bin/activate` to create/enter the virtual environment.
 - `pip install -r requirements.txt` to install or refresh dependencies.
 - `pytest` (or a focused test such as `pytest tests/test_data_generation.py`) to confirm the test suite is green before coding.
 
+**Create a branch for your own work** - do NOT work on main:
+- `git checkout -b type/...`
+  
 **Wrap up a session** – before you stop working:
 - Stop any running services (press `Ctrl+C` on Streamlit/dev servers).
 - Run `git status` to understand outstanding edits and decide whether to stage or stash them.
@@ -605,7 +605,7 @@ biohacking-optimizer/
   - [x] PostgreSQL setup & database schema migrations
   - [x] User authentication (JWT/OAuth2)
   - [x] Daily entries CRUD endpoints
-  - [ ] Create prediction endpoint
+  - [x] Create prediction endpoint
   - [ ] Application API orchestration - connect to Model Service
   - [ ] Add input validation
   - [ ] API testing (pytest)
