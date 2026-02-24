@@ -8,10 +8,6 @@
 ---
 <!-- TOC -->
 ## 📚 Table of Contents
-
-
-- [🧬 Biohacking Personal Optimization Predictor](#-biohacking-personal-optimization-predictor)
-  - [📚 Table of Contents](#-table-of-contents)
   - [Overview](#overview)
   - [🔍 System Overview](#-system-overview)
   - [🏗️ Production Architecture](#️-production-architecture)
