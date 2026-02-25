@@ -1,5 +1,7 @@
 # 🧬 Biohacking Personal Optimization Predictor
 
+Description: This project is a backend-oriented prototype combining FastAPI application structure, relational schema migrations, and data pipelines for personal optimization modeling. It emphasizes modular API design, test coverage, and maintainable services.
+
 [![Project Status: Active](https://img.shields.io/badge/Project%20Status-Active-brightgreen)](https://shields.io/)
 [![Build Status: Passing](https://img.shields.io/badge/Build-Passing-brightgreen)](https://shields.io/)
 [![Code Style: Black](https://img.shields.io/badge/Code%20Style-Black-000000.svg)](https://black.readthedocs.io/en/stable/)
